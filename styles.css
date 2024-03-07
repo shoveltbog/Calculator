@@ -24,11 +24,13 @@
 }
 
 .button-box {
+    display: flex;
     flex-wrap: wrap;
     margin: 10px auto;
-    display: flex;
     justify-content: center;
 }
+
+
 
 .button {
     font-style: italic;
