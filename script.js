@@ -40,3 +40,28 @@ const operate = function(firstNum, secondNum, operator) {
             return "Error: Invalid operator";
     }
 }
+
+
+
+const buttons = document.querySelectorAll(".button");
+
+buttons.forEach(function(button) {
+    button.addEventListener("click", (event) => {
+        console.log("Clicked button text content:", button.textContent);
+        let buttonText = button.textContent
+        let number = parseInt(buttonText);
+        console.log("Parsed number:", number);
+        if (!isNaN(number)) {
+            console.log("Condition met: It's a number");
+            displayValue = "";
+            const displayElement = document.querySelector(".display");
+            displayValue = button.textContent;
+            displayElement.textContent = displayValue
+            console.log(displayValue);
+        }
+    });
+});
+
+
+
+// 434530
