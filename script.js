@@ -13,7 +13,7 @@ const multiply = function(a,b) {
 
 const divide = function(a,b) {
     if (b === 0) {
-        return "Error: Division by zero";
+        return "Error";
     }
     return a / b;
 }
@@ -96,7 +96,7 @@ operatorButtons.forEach(function(operatorButton) {
         operator = operatorButton.textContent;
         displayValue = "";
         const displayElement = document.querySelector(".display");
-        displayElement.textContent = intermediateResult !== '' ? intermediateResult : operator;
+        displayElement.textContent = intermediateResult !== '' ? intermediateResult : firstNum;
     });
 });
 
@@ -121,8 +121,16 @@ equalButton.addEventListener("click", (event) => {
     }
 });
 
+// handle clear button click to clear all stored values and reset
+const clearButton = document.querySelector('.clear');
 
-
-
-
-
+clearButton.addEventListener("click", (event) => {
+     firstNum = "";
+     secondNum = "";
+     operator = "";
+     operatorSelected = false;
+     displayValue = "";
+     intermediateResult = '';
+     const displayElement = document.querySelector(".display");
+     displayElement.textContent = displayValue;
+});
