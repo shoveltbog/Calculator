@@ -61,9 +61,9 @@ numButtons.forEach(function(button) {
             const displayElement = document.querySelector(".display");
             displayValue += button.textContent;
             if (!operatorSelected) {
-                firstNum += button.textContent;
+                firstNum = parseInt(firstNum + buttonText);
             } else {
-                secondNum += button.textContent;
+                secondNum = parseInt(secondNum + buttonText);
             };
             displayElement.textContent = displayValue
             console.log("display value:", displayValue);
@@ -96,8 +96,6 @@ const equalButton = document.querySelector('.equals');
 
 equalButton.addEventListener("click", (event) => {
     displayValue = "";
-    firstNum = parseInt(firstNum);
-    secondNum = parseInt(secondNum);
     equalValue = operate(firstNum, secondNum, operator);
     const displayElement = document.querySelector(".display");
     displayElement.textContent = equalValue;
