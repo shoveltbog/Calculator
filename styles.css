@@ -25,6 +25,8 @@
     justify-content: center;
     border-radius: 10px;
     background-color: #e7eff6;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .display {
@@ -34,6 +36,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    font-size: 50px;
 }
 
 .button-box {
