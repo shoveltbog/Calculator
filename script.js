@@ -46,6 +46,8 @@ let operatorSelected = false;
 
 let displayValue = "";
 
+let intermediateResult = '';
+
 // handle number button clicks to display numbers and store values
 const numButtons = document.querySelectorAll(".button");
 
@@ -60,11 +62,13 @@ numButtons.forEach(function(button) {
             console.log("Condition met: It's a number");
             const displayElement = document.querySelector(".display");
             displayValue += button.textContent;
-            if (!operatorSelected) {
-                firstNum = parseInt(firstNum + buttonText);
+            if (operator === "") {
+                firstNum = parseFloat(`${firstNum}${buttonText}`); // Update firstNum
+                displayElement.textContent += buttonText; // Update display with firstNum
             } else {
-                secondNum = parseInt(secondNum + buttonText);
-            };
+                secondNum = parseFloat(`${secondNum}${buttonText}`); // Update secondNum
+                displayElement.textContent += buttonText; // Update display with secondNum
+            }
             displayElement.textContent = displayValue
             console.log("display value:", displayValue);
             console.log("firsNum:", firstNum);
@@ -80,14 +84,19 @@ const operatorButtons = document.querySelectorAll(".operator");
 
 operatorButtons.forEach(function(operatorButton) { 
     operatorButton.addEventListener("click", (event) => {
+        if (firstNum !== "" && operatorSelected && secondNum !== "") {
+            intermediateResult = operate(firstNum, secondNum, operator);
+            const displayElement = document.querySelector(".display");
+            displayElement.textContent = intermediateResult;
+            firstNum = intermediateResult;
+            secondNum = "";
+        }
+        
         operatorSelected = true;
-        console.log("Clicked button text content:", operatorButton.textContent);
-        let operatorText = operatorButton.textContent;
-        console.log("Operator:", operatorText);
+        operator = operatorButton.textContent;
+        displayValue = "";
         const displayElement = document.querySelector(".display");
-        operator = operatorText;
-        displayElement.textContent = operatorText
-        console.log(operatorText);
+        displayElement.textContent = intermediateResult !== '' ? intermediateResult : operator;
     });
 });
 
@@ -99,8 +108,21 @@ equalButton.addEventListener("click", (event) => {
     equalValue = operate(firstNum, secondNum, operator);
     const displayElement = document.querySelector(".display");
     displayElement.textContent = equalValue;
-    firstNum = '';
-    secondNum = '';
-    operatorSelected = false;
+    // check if end of operation between two numbers and if so calculate next number based of the operations of the first 2
+    if (operatorSelected && secondNum) {
+        intermediateResult = operate(firstNum, secondNum, operator);
+        console.log("intermediateResult:", intermediateResult);
+        console.log("Type of intermediateResult:", typeof intermediateResult);
+        firstNum = intermediateResult;
+        const displayElement = document.querySelector(".display");
+        displayElement.textContent = firstNum;
+        secondNum = '';
+        operatorSelected = true;
+    }
 });
+
+
+
+
+
 
