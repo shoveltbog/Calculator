@@ -53,14 +53,10 @@ numButtons.forEach(function(button) {
     button.addEventListener("click", (event) => {
         console.log("Clicked button text content:", button.textContent);
         let buttonText = button.textContent;
-        let number = parseInt(buttonText);
-        console.log("Parsed number:", number);
         if (operatorSelected && !secondNum) {
-            // Start inputting the second number
-            // Clear the display and set operatorSelected back to false for next input
-            displayValue = ""; // Clear the display
+            displayValue = ""; // Clear the display fro second number if not set
         }
-        if (!isNaN(number)) {
+        if (!isNaN(parseInt(buttonText))) {
             console.log("Condition met: It's a number");
             const displayElement = document.querySelector(".display");
             displayValue += button.textContent;
@@ -73,6 +69,8 @@ numButtons.forEach(function(button) {
             console.log("display value:", displayValue);
             console.log("firsNum:", firstNum);
             console.log("secondNum:", secondNum);
+            console.log("Type of firstNum:", typeof firstNum);
+            console.log("Type of secondNum:", typeof secondNum);
         }
     });
 });
@@ -91,5 +89,20 @@ operatorButtons.forEach(function(operatorButton) {
         displayElement.textContent = operatorText
         console.log(operatorText);
     });
+});
+
+// handle equal button clicks to use operate function
+const equalButton = document.querySelector('.equals');
+
+equalButton.addEventListener("click", (event) => {
+    displayValue = "";
+    firstNum = parseInt(firstNum);
+    secondNum = parseInt(secondNum);
+    equalValue = operate(firstNum, secondNum, operator);
+    const displayElement = document.querySelector(".display");
+    displayElement.textContent = equalValue;
+    firstNum = '';
+    secondNum = '';
+    operatorSelected = false;
 });
 
