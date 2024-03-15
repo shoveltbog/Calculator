@@ -38,4 +38,4 @@ JS
 6. The calculator is designed to be responsive and works well on various screen sizes, including mobile devices.
 
 ## Author
-👤 [@yshoveltbog](https://github.com/shoveltbog)
+👤 [@shoveltbog](https://github.com/shoveltbog)

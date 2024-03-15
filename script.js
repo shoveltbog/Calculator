@@ -2,15 +2,12 @@
 const add = function(a,b) {
     return a + b;
 }
-
 const subtract = function(a,b) {
     return a - b;
 }
-
 const multiply = function(a,b) {
     return a * b;
 }
-
 const divide = function(a,b) {
     if (b === 0) {
         return "Error";
@@ -46,23 +43,16 @@ const operate = function(firstNum, secondNum, operator) {
     return roundedResult;
 }
 
-// Variables to store numbers for calculation
+// Variables to store
 let firstNum = "";
 let secondNum = "";
-
-// Variable to store the operator
 let operator = "";
-
-// Flag to indicate whether an operator is selected
 let operatorSelected = false;
-
 let displayValue = "";
-
 let intermediateResult = '';
 
 // handle number button clicks to display numbers and store values
 const numButtons = document.querySelectorAll(".button");
-
 numButtons.forEach(function(button) {
     button.addEventListener("click", (event) => {
         console.log("Clicked button text content:", button.textContent);
@@ -91,8 +81,6 @@ numButtons.forEach(function(button) {
 
 // handle operator button clicks
 const operatorButtons = document.querySelectorAll(".operator");
-
-
 operatorButtons.forEach(function(operatorButton) { 
     operatorButton.addEventListener("click", (event) => {
         if (firstNum !== "" && operatorSelected && secondNum !== "") {
@@ -102,7 +90,6 @@ operatorButtons.forEach(function(operatorButton) {
             firstNum = intermediateResult;
             secondNum = "";
         }
-        
         operatorSelected = true;
         operator = operatorButton.textContent;
         displayValue = ""; // Clear displayValue after clicking an operator
@@ -113,7 +100,6 @@ operatorButtons.forEach(function(operatorButton) {
 
 // handle equal button clicks to use operate function
 const equalButton = document.querySelector('.equals');
-
 equalButton.addEventListener("click", (event) => {
     displayValue = "";
     equalValue = operate(firstNum, secondNum, operator);

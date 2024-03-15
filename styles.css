@@ -39,7 +39,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add box-shadow for depth */
 
     background: linear-gradient(135deg, rgba(219, 233, 232, 0.8), rgba(94, 110, 110, 0.2)); 
-    
 }
 
 .display {
@@ -54,7 +53,6 @@
     white-space: nowrap;
 }
 
-
 .button-box {
     display: flex;
     flex-direction: column;
@@ -64,8 +62,7 @@
 
 .row {
     display: flex;
-    width: auto;
-    
+    width: auto; 
 }
 
 .button {
