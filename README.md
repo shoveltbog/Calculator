@@ -2,6 +2,13 @@
 
 This is a simple calculator web application built using HTML, CSS, and JavaScript. It provides basic arithmetic operations such as addition, subtraction, multiplication, and division.
 
+[Live Demo](https://shoveltbog.github.io/Calculator)
+
+## Technologies
+HTML
+CSS
+JS
+
 ## Features
 
 - Addition (+)
@@ -29,3 +36,6 @@ This is a simple calculator web application built using HTML, CSS, and JavaScrip
 - Enter: Equals (Calculate result)
 - c or Escape: Clear (Reset calculator)
 6. The calculator is designed to be responsive and works well on various screen sizes, including mobile devices.
+
+## Author
+👤 [@yshoveltbog](https://github.com/shoveltbog)
