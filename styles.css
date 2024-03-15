@@ -33,20 +33,26 @@
     justify-content: center;
     border-radius: 10px;
     background-color: #e7eff6;
-    overflow: hidden;
     white-space: nowrap;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add box-shadow for depth */
+
+    background: linear-gradient(135deg, rgba(219, 233, 232, 0.8), rgba(94, 110, 110, 0.2)); 
+    
 }
 
 .display {
     margin: 8px;
-    width:75%;
-    height: 75%;
+    width:95%;
+    height: 95%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 40px;
+    font-size: 30px;
     overflow: hidden;
+    white-space: nowrap;
 }
+
 
 .button-box {
     display: flex;
@@ -83,7 +89,12 @@
     color: #2a4d69;
 }
 
-
+.button:hover {
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
 
 
 

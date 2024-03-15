@@ -55,23 +55,21 @@ numButtons.forEach(function(button) {
     button.addEventListener("click", (event) => {
         console.log("Clicked button text content:", button.textContent);
         let buttonText = button.textContent;
-        if (operatorSelected && !secondNum) {
-            displayValue = ""; // Clear the display fro second number if not set
+        if (operatorSelected && !secondNum && displayValue !== '0.') {
+            displayValue = ""; // Clear the display for the second number if it's not set and the display value is not '0.'
         }
         if (!isNaN(parseInt(buttonText))) {
             console.log("Condition met: It's a number");
             const displayElement = document.querySelector(".display");
-            displayValue += button.textContent;
+            displayValue += buttonText;
             if (operator === "") {
-                firstNum = parseFloat(`${firstNum}${buttonText}`); // Update firstNum
-                displayElement.textContent += buttonText; // Update display with firstNum
+                firstNum = parseFloat(displayValue); // Update firstNum
             } else {
-                secondNum = parseFloat(`${secondNum}${buttonText}`); // Update secondNum
-                displayElement.textContent += buttonText; // Update display with secondNum
+                secondNum = parseFloat(displayValue); // Update secondNum
             }
-            displayElement.textContent = displayValue
+            displayElement.textContent = displayValue; // Update display with displayValue
             console.log("display value:", displayValue);
-            console.log("firsNum:", firstNum);
+            console.log("firstNum:", firstNum);
             console.log("secondNum:", secondNum);
             console.log("Type of firstNum:", typeof firstNum);
             console.log("Type of secondNum:", typeof secondNum);
@@ -81,6 +79,7 @@ numButtons.forEach(function(button) {
 
 // handle operator button clicks
 const operatorButtons = document.querySelectorAll(".operator");
+
 
 operatorButtons.forEach(function(operatorButton) { 
     operatorButton.addEventListener("click", (event) => {
@@ -94,7 +93,7 @@ operatorButtons.forEach(function(operatorButton) {
         
         operatorSelected = true;
         operator = operatorButton.textContent;
-        displayValue = "";
+        displayValue = ""; // Clear displayValue after clicking an operator
         const displayElement = document.querySelector(".display");
         displayElement.textContent = intermediateResult !== '' ? intermediateResult : firstNum;
     });
@@ -114,7 +113,6 @@ equalButton.addEventListener("click", (event) => {
         console.log("intermediateResult:", intermediateResult);
         console.log("Type of intermediateResult:", typeof intermediateResult);
         firstNum = intermediateResult;
-        const displayElement = document.querySelector(".display");
         displayElement.textContent = firstNum;
         secondNum = '';
         operatorSelected = true;
@@ -133,4 +131,22 @@ clearButton.addEventListener("click", (event) => {
      intermediateResult = '';
      const displayElement = document.querySelector(".display");
      displayElement.textContent = displayValue;
+});
+
+// handle decimal button click
+const decimalButton = document.querySelector('.decimal');
+
+
+decimalButton.addEventListener('click', () => {
+    if (!displayValue || (displayValue === '0.' && !operatorSelected)) {
+        // If no number has been entered before or if it's "0." and no operator has been selected,
+        // set displayValue to "0."
+        displayValue = '0.';
+    } else if (!displayValue.includes('.')) {
+        // If there's no decimal point already, append it to displayValue
+        displayValue += '.';
+    }
+    // Update the display
+    const displayElement = document.querySelector(".display");
+    displayElement.textContent = displayValue;
 });
