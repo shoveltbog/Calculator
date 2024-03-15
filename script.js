@@ -128,19 +128,21 @@ equalButton.addEventListener("click", (event) => {
     }
 });
 
+// function to reset everything
+function clear() {
+    firstNum = "";
+    secondNum = "";
+    operator = "";
+    operatorSelected = false;
+    displayValue = "";
+    intermediateResult = '';
+    const displayElement = document.querySelector(".display");
+    displayElement.textContent = displayValue;
+}
+
 // handle clear button click to clear all stored values and reset
 const clearButton = document.querySelector('.clear');
-
-clearButton.addEventListener("click", (event) => {
-     firstNum = "";
-     secondNum = "";
-     operator = "";
-     operatorSelected = false;
-     displayValue = "";
-     intermediateResult = '';
-     const displayElement = document.querySelector(".display");
-     displayElement.textContent = displayValue;
-});
+clearButton.addEventListener("click", clear);
 
 // handle decimal button click
 const decimalButton = document.querySelector('.decimal');
@@ -159,3 +161,48 @@ decimalButton.addEventListener('click', () => {
     const displayElement = document.querySelector(".display");
     displayElement.textContent = displayValue;
 });
+
+// Function to handle keyboard input and synchronize it with calculator button clicks
+function handleKeyboardInput(e) {
+    const keyMap = {
+        '1': '1',
+        '2': '2',
+        '3': '3',
+        '4': '4',
+        '5': '5',
+        '6': '6',
+        '7': '7',
+        '8': '8',
+        '9': '9',
+        '0': '0',
+        '.': '.',
+        '+': '+',
+        '-': '-',
+        '*': '*',
+        '/': '/',
+        '=': '=',
+        'Enter': '=',
+        'Escape': 'Escape',
+        'c': 'c'
+    };
+
+    const buttonContent = keyMap[e.key];
+    if (buttonContent !== undefined) {
+        // For 'c' and 'Escape' keys, we should directly call clear() function
+        if (buttonContent === 'c' || buttonContent === 'Escape') {
+            clear();
+            return; // Exit the function early to prevent further execution
+        }
+        
+        // For other keys, find the corresponding button and trigger a click event
+        const buttons = document.querySelectorAll('.button, .operator, .equals, .clear');
+        buttons.forEach(button => {
+            if (button.textContent === buttonContent) {
+                button.click();
+            }
+        });
+    }
+}
+
+// Add event listener for keyboard input
+document.addEventListener('keydown', handleKeyboardInput);
