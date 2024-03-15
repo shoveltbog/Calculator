@@ -37,6 +37,9 @@ const operate = function(firstNum, secondNum, operator) {
         default:
             return "Error: Invalid operator";
     }
+    if (result === "Error") {
+        return result; // Return "Error" message if division by zero occurred
+    }
     let roundedResult = result.toFixed(10);
     // Remove trailing zeros after the decimal point
     roundedResult = roundedResult.replace(/\.?0+$/, '');
@@ -146,8 +149,6 @@ clearButton.addEventListener("click", clear);
 
 // handle decimal button click
 const decimalButton = document.querySelector('.decimal');
-
-
 decimalButton.addEventListener('click', () => {
     if (!displayValue || (displayValue === '0.' && !operatorSelected)) {
         // If no number has been entered before or if it's "0." and no operator has been selected,
