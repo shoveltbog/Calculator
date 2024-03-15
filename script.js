@@ -20,18 +20,27 @@ const divide = function(a,b) {
 
 // function to calculate two numbers with an operator
 const operate = function(firstNum, secondNum, operator) {
+    let result;
     switch (operator) {
         case '+':
-            return add(firstNum, secondNum);
+            result = add(firstNum, secondNum);
+            break;
         case '-':
-            return subtract(firstNum, secondNum);
+            result = subtract(firstNum, secondNum);
+            break;
         case '*':
-            return multiply(firstNum, secondNum);
+            result = multiply(firstNum, secondNum);
+            break;
         case '/':
-            return divide(firstNum, secondNum);
+            result = divide(firstNum, secondNum);
+            break;
         default:
             return "Error: Invalid operator";
     }
+    let roundedResult = result.toFixed(10);
+    // Remove trailing zeros after the decimal point
+    roundedResult = roundedResult.replace(/\.?0+$/, '');
+    return roundedResult;
 }
 
 // Variables to store numbers for calculation
